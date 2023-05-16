@@ -41,15 +41,17 @@ public class Board {
 
     public String nums = "123456789";
 
-    private int[][] start = new int[][]{{3, 0, 0, 0, 0, 2, 7, 0 ,0},
-        {7, 2, 0, 3, 1, 0, 0, 0 ,0},
-        {1, 0, 9, 7, 0, 0, 2, 0 ,0},
-        {4, 3, 0, 9, 0, 0, 8, 0 ,5},
-        {5, 9, 0, 0, 0, 6, 3, 0 ,1},
-        {8, 1, 2, 0, 3, 0, 0, 6 ,0},
-        {9, 0, 5, 2, 4, 0, 0, 8 ,0},
-        {6, 0, 3, 0, 8, 7, 5, 0 ,0},
-        {0, 8, 0, 6, 9, 0, 4, 0, 0}};
+//    private int[][] start = new int[][]{{3, 0, 0, 0, 0, 2, 7, 0 ,0},
+//        {7, 2, 0, 3, 1, 0, 0, 0 ,0},
+//        {1, 0, 9, 7, 0, 0, 2, 0 ,0},
+//        {4, 3, 0, 9, 0, 0, 8, 0 ,5},
+//        {5, 9, 0, 0, 0, 6, 3, 0 ,1},
+//        {8, 1, 2, 0, 3, 0, 0, 6 ,0},
+//        {9, 0, 5, 2, 4, 0, 0, 8 ,0},
+//        {6, 0, 3, 0, 8, 7, 5, 0 ,0},
+//        {0, 8, 0, 6, 9, 0, 4, 0, 0}};
+    // what da hell
+    private int[][] start;
 
     public Sudoku game = new Sudoku("easy");
     public int[][] solved = game.getSolution();
@@ -66,11 +68,11 @@ public class Board {
                 clicked[i][j] = false;
             }
         }
+        this.start = game.getGrid();
     }
     public void generateBoard() {
         game.printGrid();
         game.print();
-
 
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 9; j++) {
@@ -81,7 +83,8 @@ public class Board {
 
                 board[i][j].setPrefHeight(100);
                 board[i][j].setPrefWidth(100);
-                grid.add(board[i][j], i ,j, 1, 1);
+                // brain dead retard its colidx first :skull:
+                grid.add(board[i][j], j ,i, 1, 1);
                 if(start[i][j]!=0) {
                     board[i][j].setText(String.valueOf(game.getSolution()[i][j]));
                     board[i][j].setStyle("-fx-font-size:40");

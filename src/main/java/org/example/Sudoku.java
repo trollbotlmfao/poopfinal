@@ -40,7 +40,8 @@ public class Sudoku {
         for (int i = 0; i < 5; i++) {
             board[(int)(Math.random() * 9)][(int)(Math.random() * 9)] = (int)(Math.random() * 9 + 1);
         }
-        while (!(Solver.solveSudoku(board, N))); {
+        // removed semicolon here
+        while (!(Solver.solveSudoku(board, N))) {
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j ++) {
                     board[i][j] = 0;
